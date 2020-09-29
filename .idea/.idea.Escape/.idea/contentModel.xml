@@ -43661,6 +43661,7 @@
       <e p="UE4Game.Target.cs" t="Include" />
     </e>
     <e p="X:\UnrealProgs\Udemy\Escape" t="IncludeFlat">
+      <e p=".gitignore" t="Include" />
       <e p="CMakeLists.txt" t="Include" />
       <e p="Config" t="Include">
         <e p="DefaultEditor.ini" t="Include" />
@@ -43686,11 +43687,15 @@
           <e p="EscapeGameModeBase.cpp" t="Include" />
           <e p="EscapeGameModeBase.h" t="Include" />
           <e p="Private" t="Include">
+            <e p="Grabber.cpp" t="Include" />
             <e p="HelloWorld.cpp" t="Include" />
+            <e p="OpenDoor.cpp" t="Include" />
             <e p="WorldPosition.cpp" t="Include" />
           </e>
           <e p="Public" t="Include">
+            <e p="Grabber.h" t="Include" />
             <e p="HelloWorld.h" t="Include" />
+            <e p="OpenDoor.h" t="Include" />
             <e p="WorldPosition.h" t="Include" />
           </e>
         </e>

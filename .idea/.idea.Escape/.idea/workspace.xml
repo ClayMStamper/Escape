@@ -4,24 +4,59 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7b03bef-37d0-4c7e-ba5f-9d4e334367ec" name="Default Changelist" comment="" />
+    <list default="true" id="c7b03bef-37d0-4c7e-ba5f-9d4e334367ec" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Escape/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Escape/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Escape/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Escape/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEditor.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEditor.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/Dung_Ceiling.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/Dung_Floor.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/Dung_Wall.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/Dung_Wall.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/Dungeon.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/Dungeon.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/Dungeon_Inst.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/TexturesCom_Brick_Medieval_1K_albedo.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/TexturesCom_Brick_Medieval_1K_ao.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/TexturesCom_Brick_Medieval_1K_height.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/TexturesCom_Brick_Medieval_1K_normal.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/Dungeon/TexturesCom_Brick_Medieval_1K_roughness.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/StoneCladding/StoneCladding.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DesignAssets/Materials/StoneCladding/StoneCladding.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/WoodPlanks/TexturesCom_OldWoodPlanks_3_5x3_5_1K_albedo.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/WoodPlanks/TexturesCom_OldWoodPlanks_3_5x3_5_1K_normal.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/WoodPlanks/TexturesCom_OldWoodPlanks_3_5x3_5_1K_roughness.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/WoodPlanks/WoodCieling.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DesignAssets/Materials/WoodPlanks/WoodCieling.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Materials/WoodPlanks/WoodPlanks.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DesignAssets/Models/Door.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DesignAssets/Models/Door.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Maps/Minimal_Default.umap" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Source/Escape/Public/WorldPosition.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Escape/Public/Grabber.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Escape/Private/WorldPosition.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Escape/Private/Grabber.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Escape/Public/OpenDoor.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Escape/Private/OpenDoor.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Source/Escape/Private/WorldPosition.cpp" />
+        <option value="$PROJECT_DIR$/Source/Escape/Private/OpenDoor.cpp" />
+        <option value="$PROJECT_DIR$/Source/Escape/Public/OpenDoor.h" />
+        <option value="$PROJECT_DIR$/Source/Escape/Public/Grabber.h" />
+        <option value="$PROJECT_DIR$/Source/Escape/Private/Grabber.cpp" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1fPdImtYtqCXhUSWT0jeXYg88MK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -260,6 +295,12 @@
       <workItem from="1597074222813" duration="69000" />
       <workItem from="1597106952140" duration="8870000" />
       <workItem from="1598456692833" duration="1882000" />
+      <workItem from="1598804308813" duration="105000" />
+      <workItem from="1598806195292" duration="2507000" />
+      <workItem from="1598880717953" duration="1954000" />
+      <workItem from="1599494318413" duration="13001000" />
+      <workItem from="1600543922671" duration="5671000" />
+      <workItem from="1600683356225" duration="28133000" />
     </task>
     <servers />
   </component>
@@ -292,9 +333,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2517" height="401" key="GridCell.Tab.0.right/2560.780.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1596331570354" />
-    <state x="1137" y="322" key="SettingsEditor" timestamp="1596125263605">
+    <state x="657" y="388" width="1328" height="710" key="SettingsEditor" timestamp="1601336018743">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state x="657" y="388" width="1328" height="710" key="SettingsEditor/2560.349.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1601336018743" />
     <state x="1137" y="322" key="SettingsEditor/2560.780.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1596125263605" />
+    <state x="936" y="330" key="run.anything.popup" timestamp="1599577570554">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="936" y="330" key="run.anything.popup/2560.349.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1599577570554" />
   </component>
 </project>
