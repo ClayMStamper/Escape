@@ -24,7 +24,6 @@ void UOpenDoor::BeginPlay()
 	CurrentRot = StartRot;
 
 	CheckSerializedRefsForNull();
-	ActorToOpen = GetWorld()->GetFirstPlayerController()->GetPawn();
 
 }
 
@@ -35,7 +34,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	PollForTrigger();
+	PollForTrigger(DeltaTime);
 	RotateDoor(DeltaTime);
 	
 	// ...
@@ -47,11 +46,21 @@ void UOpenDoor::RotateDoor(float dTime)
 	GetOwner()->SetActorRotation(CurrentRot);
 }
 
-void UOpenDoor::PollForTrigger()
+void UOpenDoor::PollForTrigger(const float& DeltaTime)
 {
-	const bool doorShouldOpen = PressurePlate && PressurePlate->IsOverlappingActor(ActorToOpen);
+	// const bool doorShouldOpen = PressurePlate && PressurePlate->IsOverlappingActor(ActorToOpen);
 
-	if (doorShouldOpen)
+	if (!PlateTriggerVolume)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Pressure Plate's Trigger Volume isn't set!!!"));
+		return;
+	}
+
+	const float TotalMassReceived = CalcTotalMassReceived();
+	UpdatePressurePlateVisuals(TotalMassReceived, DeltaTime);
+	const bool DoorShouldOpen = TotalMassReceived > WeightRequirement;
+	
+	if (DoorShouldOpen)
 	{
 		SetDoorDirection(Open);
 	} else
@@ -86,11 +95,54 @@ void UOpenDoor::SetDoorDirection(EDoorDirection direction)
 
 void UOpenDoor::CheckSerializedRefsForNull()
 {
-	if (!PressurePlate)
+	if (!PlateTriggerVolume)
 	{
 		UE_LOG(LogTemp, Error, TEXT("%s has the OpenDoor component, but no pressure plate ref!"),
 			*GetOwner()->GetName());
 	}
+}
+
+float UOpenDoor::CalcTotalMassReceived() const
+{
+
+	float TotalMass = 0.f;
+
+	//find all overlapping actors
+	TArray<AActor*> OverlappingActors;
+	if (PlateTriggerVolume)
+		PlateTriggerVolume->GetOverlappingActors(OUT OverlappingActors);
+	else
+		UE_LOG(LogTemp, Error, TEXT("Pressure Plate's Trigger Volume isn't set!!!"));
+
+	//add up masses
+	for (AActor* Actor : OverlappingActors)
+	{
+		TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
+	}
+	
+	return  TotalMass;
+}
+
+void UOpenDoor::UpdatePressurePlateVisuals(const float& WeightReceived, const float& DeltaTime)
+{
+	UPrimitiveComponent* PlatePrim = TriggerPlateActor->FindComponentByClass<UPrimitiveComponent>();
+
+	if (!PlatePrim)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Couldn't find pressure plate's primitive component!"));
+		return;
+	}
+
+	float WeightLerpAlpha = WeightReceived / WeightRequirement;
+	WeightLerpAlpha = FMath::Clamp(WeightLerpAlpha, 0.f, 1.f);
+	const FVector CurrentScale = PlatePrim->GetRelativeScale3D();
+	const float NewZ = FMath::Lerp(2.f, 0.1f, WeightLerpAlpha);
+	FVector TargetScale = CurrentScale;
+	TargetScale.Z = NewZ;
+	const FVector NewScale = FMath::Lerp(CurrentScale, TargetScale, DeltaTime);
+
+	PlatePrim->SetRelativeScale3D(NewScale);
+	
 }
 
 

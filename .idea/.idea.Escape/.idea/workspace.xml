@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c7b03bef-37d0-4c7e-ba5f-9d4e334367ec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Escape/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Escape/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Pawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Pawn.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Levels/BuildingEscape.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/BuildingEscape.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Escape/Private/Grabber.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Escape/Private/Grabber.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Escape/Public/Grabber.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Escape/Public/Grabber.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Escape/Private/OpenDoor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Escape/Private/OpenDoor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Escape/Public/OpenDoor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Escape/Public/OpenDoor.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +33,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Source/Escape/Private/WorldPosition.cpp" />
-        <option value="$PROJECT_DIR$/Source/Escape/Private/OpenDoor.cpp" />
-        <option value="$PROJECT_DIR$/Source/Escape/Public/OpenDoor.h" />
         <option value="$PROJECT_DIR$/Source/Escape/Public/Grabber.h" />
         <option value="$PROJECT_DIR$/Source/Escape/Private/Grabber.cpp" />
+        <option value="$PROJECT_DIR$/Source/Escape/Public/OpenDoor.h" />
+        <option value="$PROJECT_DIR$/Source/Escape/Private/OpenDoor.cpp" />
       </list>
     </option>
   </component>
@@ -283,7 +285,8 @@
       <workItem from="1598880717953" duration="1954000" />
       <workItem from="1599494318413" duration="13001000" />
       <workItem from="1600543922671" duration="5671000" />
-      <workItem from="1600683356225" duration="36343000" />
+      <workItem from="1600683356225" duration="36952000" />
+      <workItem from="1601665931239" duration="7528000" />
     </task>
     <servers />
   </component>
@@ -325,5 +328,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="936" y="330" key="run.anything.popup/2560.349.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1599577570554" />
+    <state x="936" y="353" width="672" height="676" key="search.everywhere.popup" timestamp="1601673985960">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="936" y="353" width="672" height="676" key="search.everywhere.popup/2560.349.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1601673985960" />
   </component>
 </project>

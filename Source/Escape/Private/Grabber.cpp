@@ -39,7 +39,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	if (PhysicsHandle->GrabbedComponent)
 	{
 		PhysicsHandle->SetTargetLocation(GrabRayEnd);
-		UE_LOG(LogTemp, Warning, TEXT("Setting grabbed component's position to = %s"), *GrabRayEnd.ToString());
+		// UE_LOG(LogTemp, Warning, TEXT("Setting grabbed component's position to = %s"), *GrabRayEnd.ToString());
 	}
 	
 }

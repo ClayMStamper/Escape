@@ -33,6 +33,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	bool DoesClose = true;
 	UPROPERTY(EditAnywhere)
+	float WeightRequirement = 50.f;
+	UPROPERTY(EditAnywhere)
 	float CloseDoorDelay = 0.5f;
 	UPROPERTY(EditAnywhere)
 	float CloseDoorSpeed = 3.f;
@@ -44,9 +46,9 @@ private:
 	FRotator OpenOffset = {0, 120, 0};
 	
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume* PressurePlate;
+	ATriggerVolume* PlateTriggerVolume;
 	UPROPERTY(EditAnywhere)
-	AActor* ActorToOpen;
+	AActor* TriggerPlateActor;
 	
 	FRotator StartRot, CurrentRot, RotOffset;
 	float Opened_TimeStamp = 0.f;
@@ -55,8 +57,10 @@ private:
 // private methods
 private:
 	void RotateDoor(float dTime);
-	void PollForTrigger();
+	void PollForTrigger(const float& DeltaTime);
 	void SetDoorDirection(EDoorDirection direction);
 	void CheckSerializedRefsForNull();
+	float CalcTotalMassReceived() const;
+	void UpdatePressurePlateVisuals(const float& WeightReceived, const float& DeltaTime);
 		
 };
