@@ -27,17 +27,19 @@ protected:
 	
 private:
 
+	void CalcGrabPoint();
 	void TryGrab();
-	void StartGrab(AActor* GrabbedObject, const FVector* const GrabLocation);
+	void StartGrab(UPrimitiveComponent* GrabbedObject);
 	void Release();
 	void SetupPhysicsHandle();
 	void SetupInput();
-	void DrawRay(const FVector &ViewPos, const FVector &RayEnd) const;
+	void DrawRay() const;
 
-	FHitResult GetFirstGrabbableInReach(FVector& GrabPoint);
+	FHitResult GetFirstGrabbableInReach();
 	
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	UInputComponent* InputComponent = nullptr;
+	FVector GrabRayEnd, ViewPos;
 
 	UPROPERTY(EditAnywhere)
 	bool ShouldDrawRay = false;

@@ -26,11 +26,21 @@ void UGrabber::BeginPlay()
 
 }
 
+
+
 // Called every frame
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	CalcGrabPoint();
+	
+	if (PhysicsHandle->GrabbedComponent)
+	{
+		PhysicsHandle->SetTargetLocation(GrabRayEnd);
+		UE_LOG(LogTemp, Warning, TEXT("Setting grabbed component's position to = %s"), *GrabRayEnd.ToString());
+	}
 	
 }
 
@@ -53,65 +63,63 @@ void UGrabber::SetupInput()
 	InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
 }
 
+void UGrabber::CalcGrabPoint()
+{
+	// Get Player's view vector
+	FRotator ViewRot;
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint
+        (
+        OUT ViewPos,
+        OUT ViewRot
+        );
+	
+	const FVector PlayerForward = ViewRot.Vector();
+	GrabRayEnd = ViewPos + PlayerForward * Reach;
+}
+
 void UGrabber::TryGrab()
 {
 
 	// try to reach actors with physics body and correct collision channel
-	FVector GrabPoint;
-	const FHitResult Hit = GetFirstGrabbableInReach(GrabPoint);
-	AActor* GrabbedObject = Hit.GetActor();
+	const FHitResult Hit = GetFirstGrabbableInReach();
+	UPrimitiveComponent* GrabbedObject = Hit.GetComponent();
 
+	// if we reach something, attach physics handles
 	if (GrabbedObject)
 	{
-		StartGrab(GrabbedObject, &GrabPoint);
+		StartGrab(GrabbedObject);
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Grabber pressed, but there was nothing to grab!"));
 	}
-
-
-	// if we reach something, attach physics handles
 	
 }
 
-void UGrabber::StartGrab(AActor* GrabbedObject, const FVector* const GrabLocation)
+void UGrabber::StartGrab(UPrimitiveComponent* GrabbedObject)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Object: %s was grabbed at grab point: %s!"), *GrabbedObject->GetName(), *GrabLocation->ToString());
-	// PhysicsHandle->GrabComponentAtLocation
-	// 	(
-	// 		
-	// 	)
+	UE_LOG(LogTemp, Warning, TEXT("Object: %s was grabbed at grab point: %s!"),
+		*GrabbedObject->GetName(), *GrabRayEnd.ToString());
+
+	PhysicsHandle->GrabComponentAtLocation
+		(
+			GrabbedObject,
+			NAME_None,
+			GrabRayEnd
+		);
 }
 
 void UGrabber::Release()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grabber released!"));
+	PhysicsHandle->ReleaseComponent();
 }
 
-FHitResult UGrabber::GetFirstGrabbableInReach(FVector& GrabPoint)
+FHitResult UGrabber::GetFirstGrabbableInReach()
 {
 
-	// Get Player's view vector
-	FVector ViewPos;
-	FRotator ViewRot;
-	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint
-		(
-        OUT ViewPos,
-        OUT ViewRot
-        );
-	
-	// UE_LOG(LogTemp, Warning, TEXT("Grabber:\n\tLocation: %s \n\tRotation: %s"),
-	// 	*ViewPos.ToString(),
-	// 	*ViewRot.ToString()
-	// 	);
-
-	// Draw line to show reach
-	const FVector PlayerForward = ViewRot.Vector();
-	GrabPoint = ViewPos + PlayerForward * Reach;
-
 	if (ShouldDrawRay)
-		DrawRay(ViewPos, GrabPoint);
+		DrawRay();
 	
 	// Ray cast
 	FHitResult Hit;
@@ -119,7 +127,7 @@ FHitResult UGrabber::GetFirstGrabbableInReach(FVector& GrabPoint)
 	GetWorld()->LineTraceSingleByObjectType(
         OUT Hit,
         ViewPos,
-        GrabPoint,
+        GrabRayEnd,
         FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
         TraceParams
         );
@@ -133,13 +141,13 @@ FHitResult UGrabber::GetFirstGrabbableInReach(FVector& GrabPoint)
 	
 }
 
-void UGrabber::DrawRay(const FVector &ViewPos, const FVector &RayEnd) const
+void UGrabber::DrawRay() const
 {
 	DrawDebugLine
 	(
             GetWorld(),
             ViewPos,
-            RayEnd,
+            GrabRayEnd,
             FColor(0, 255, 0),
             false,
             0.f,
