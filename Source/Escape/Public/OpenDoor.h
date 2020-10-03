@@ -26,6 +26,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	FString EnumToString(EDoorDirection Direction);
 
 // private fields
 private:
@@ -49,16 +50,21 @@ private:
 	ATriggerVolume* PlateTriggerVolume;
 	UPROPERTY(EditAnywhere)
 	AActor* TriggerPlateActor;
+	UPROPERTY()
+	UAudioComponent* AudioComponent = nullptr;
 	
 	FRotator StartRot, CurrentRot, RotOffset;
+	EDoorDirection CurrentDirection = Close;
 	float Opened_TimeStamp = 0.f;
 	float DoorSpeed = 1.f;
+	float ClickRotationThreshold = 10.f; //degrees 
 
 // private methods
 private:
+	void FindAudioComponent();
 	void RotateDoor(float dTime);
 	void PollForTrigger(const float& DeltaTime);
-	void SetDoorDirection(EDoorDirection direction);
+	void SetDoorDirection(EDoorDirection NewDirection);
 	void CheckSerializedRefsForNull();
 	float CalcTotalMassReceived() const;
 	void UpdatePressurePlateVisuals(const float& WeightReceived, const float& DeltaTime);

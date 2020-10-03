@@ -3,6 +3,8 @@
 
 #include "OpenDoor.h"
 
+#include "Components/AudioComponent.h"
+
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
 {
@@ -24,6 +26,7 @@ void UOpenDoor::BeginPlay()
 	CurrentRot = StartRot;
 
 	CheckSerializedRefsForNull();
+	FindAudioComponent();
 
 }
 
@@ -38,6 +41,19 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	RotateDoor(DeltaTime);
 	
 	// ...
+}
+
+
+void UOpenDoor::FindAudioComponent() 
+{
+	AudioComponent = GetOwner()->FindComponentByClass<UAudioComponent>();
+	if (!AudioComponent)
+	{
+		UE_LOG(LogTemp, Error, TEXT("%s is missing audio component!"), *GetOwner()->GetName());
+	} else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Found audio component!"));
+	}
 }
 
 void UOpenDoor::RotateDoor(float dTime)
@@ -62,20 +78,26 @@ void UOpenDoor::PollForTrigger(const float& DeltaTime)
 	
 	if (DoorShouldOpen)
 	{
-		SetDoorDirection(Open);
+		if (CurrentDirection == Close)
+			SetDoorDirection(Open);
 	} else
 	{
-		SetDoorDirection(Close);
+		if (CurrentDirection == Open)
+			SetDoorDirection(Close);
 	}
 
 }
 
-void UOpenDoor::SetDoorDirection(EDoorDirection direction)
+void UOpenDoor::SetDoorDirection(EDoorDirection NewDirection)
 {
 
 	const float worldTime = GetWorld()->GetTimeSeconds();
+	CurrentDirection = NewDirection;
+	AudioComponent->Play();
 
-	switch (direction)
+	// UE_LOG(LogTemp, Warning, TEXT("Setting door direction to"), *EnumToString(NewDirection));
+	
+	switch (NewDirection)
 	{
 		case Open:
 			Opened_TimeStamp = worldTime;
@@ -87,7 +109,7 @@ void UOpenDoor::SetDoorDirection(EDoorDirection direction)
 			if (delayIsFinished)
 			{
 				DoorSpeed = CloseDoorSpeed;
-				RotOffset = ClosedOffset; 
+				RotOffset = ClosedOffset;
 			}
 			break;
 	}
@@ -142,6 +164,20 @@ void UOpenDoor::UpdatePressurePlateVisuals(const float& WeightReceived, const fl
 	const FVector NewScale = FMath::Lerp(CurrentScale, TargetScale, DeltaTime);
 
 	PlatePrim->SetRelativeScale3D(NewScale);
+	
+}
+
+FString UOpenDoor::EnumToString(EDoorDirection Direction)
+{
+	switch (Direction)
+	{
+	case Open:
+		return "Open";
+	case Close:
+		return "Close";
+	}
+
+	return "***Enum not recognized ERROR***";
 	
 }
 

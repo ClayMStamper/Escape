@@ -36,8 +36,9 @@ private:
 	void DrawRay() const;
 
 	FHitResult GetFirstGrabbableInReach();
-	
+	UPROPERTY()
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+	UPROPERTY()
 	UInputComponent* InputComponent = nullptr;
 	FVector GrabRayEnd, ViewPos;
 
